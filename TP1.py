@@ -49,7 +49,6 @@ def studentMenu():
     else: # por default reinicia la funcion
         studentMenu()
 
-
 def subjectMenu():
     os.system('cls') # Clears console   
     lineSeparator(consoleLength) # Roof of the box
@@ -78,7 +77,8 @@ def welcomeMessageFunction():
     os.system('cls') # Clears console   
     lineSeparator(consoleLength) # Roof of the box
 
-    customPrint('Bienvenido al Trabajo practico de Tecnicas de Programacion')
+    customPrintCentered('Bienvenido al Trabajo practico de Tecnicas de Programacion')
+    customPrint('')
     customPrint('Programadores: ')
     customPrint('- Maria Navares')
     customPrint('- Martin Borzi')
@@ -93,7 +93,7 @@ def lineSeparator(number): # Esta funcion toma un numero cualquera, y genera un 
     ret = ''
     for _ in range(number):
         ret = ret + '-'
-    print('  '+ret)
+    print(' -'+ret)
 
 def customPrint(string): # Esta funcion toma un string, al largo total definido de la consola le resta el largo del string para poder calcular donde agregar las paredes iniciales y finales
     spaces = ''
@@ -101,5 +101,13 @@ def customPrint(string): # Esta funcion toma un string, al largo total definido 
         spaces = spaces + ' '
     
     print('| ' + string  + spaces +'|')
+
+def customPrintCentered(string): # Misma funcion que customPrint() pero separa los espacios en dos y los mete uno de cada lado para que quede centrado
+    spaces = ''
+    customRange = round((consoleLength - len(string)) / 2)
+    for _ in range(customRange):
+        spaces = spaces + ' '
+    
+    print('|'+ spaces + string  + spaces +' |')
 
 main() # Funcion principal donde se ejecuta todo
