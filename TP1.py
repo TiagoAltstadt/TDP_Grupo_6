@@ -4,21 +4,6 @@ import os # Esta libreria me permite hacer el clear screen
 consoleLength = 80
 breakLine = '\n'
 
-def welcomeMessageFunction():
-    os.system('cls') # Clears console   
-    lineSeparator(consoleLength) # Roof of the box
-
-    customPrintCentered('Bienvenido al Trabajo practico de Tecnicas de Programacion')
-    customPrint('')
-    customPrint('Programadores: ')
-    customPrint('- Maria Navares')
-    customPrint('- Martin Borzi')
-    customPrint('- Tiago Altstadt')
-
-    lineSeparator(consoleLength) # Floor of the box
-    input(' Apreta cualquier tecla para continuar...')
-    mainMenu()
-
 def main():
     studentfile=open('student.txt','w')
     studentfile.write('DNI\tNombre\tApellido\tDomicilio\tMateria1\tMateria1-Nota1\tMateria1-nota2\tMateria1-Promedio\tMateria1-Situacion\tMateria2\tMateria2-Nota2\tMateria1-nota2\tMateria2-Promedio\tMateria2-Situacion'+'\n')
@@ -80,127 +65,36 @@ def subjectMenu():
     customPrint('  1) Agregar materia')
     customPrint('  2) Agregar nota')
     customPrint('  3) Modificar nota')
-    customPrint('  4) Listar alumnos')
-    customPrint('  5) <- Menu Principal')
+    customPrint('  4) <- Menu Principal')
 
     lineSeparator(consoleLength) # Roof of the box
     selectedValue = input('Seleccion: ')
 
     if selectedValue == '1':
         print('Agregar materia')
-        newsubject()
     elif selectedValue == '2':
         print('Agregar nota')
-        newnote()
     elif selectedValue == '3':
         print('Modificar nota')
-        modifynote()
     elif selectedValue == '4':
-        liststudent()
-    elif selectedValue == '5':
-        mainMenu()  
+        mainMenu()
     else: # por default reinicia la funcion
         subjectMenu()
-        
-  
-#NUEVA MATERIA------------------------------------------------------      
-def newsubject(): # definir una nueva materia
-    dni=input(' Ingrese el DNI del alumno del que quiere agregar una materia: ')
-    studentfile=open('student.txt','r')
-    data_list = [] # Initialize an empty list to store the dictionaries1
-    for line in studentfile: # Read each individual's information
-        values = line.strip().split("\t")  # tab-separated values
-        data_list.append(values)     # Append the individual's line to the list
-    studentfile.close()
-    for index in range(len(data_list)):
-        if data_list[index][0]==dni:
-            aux=str(input('Seleccione que materia quiere agregar: 1. Materia 1; 2. Materia 2 '))
-            if aux=='1':
-                data_list[index][4]=input('Ingrese Materia 1: ')
-            elif aux=='2':
-                data_list[index][9]=input('Ingrese Materia 2: ')
-            else:
-                print ('La opcion no es valida')
-    studentfile=open('student.txt','w')
-    studentfile.write('DNI\tNombre\tApellido\tDomicilio\tMateria1\tMateria1-Nota1\tMateria1-nota2\tMateria1-Promedio\tMateria1-Situacion\tMateria2\tMateria2-Nota2\tMateria1-nota2\tMateria2-Promedio\tMateria2-Situacion'+'\n')
-    for index in range(1,len(data_list)):
-        studentfile.write(str(data_list[index][0])+'\t'+str(data_list[index][1])+'\t'+str(data_list[index][2])+'\t'+str(data_list[index][3])+'\t'+str(data_list[index][4])+'\t'+str(data_list[index][5])+'\t'+str(data_list[index][6])+'\t'+str(data_list[index][7])+'\t'+str(data_list[index][8])+'\t'+str(data_list[index][9])+'\t'+str(data_list[index][10])+'\t'+str(data_list[index][11])+'\t'+str(data_list[index][12])+'\t'+str(data_list[index][13])+'\n')
-    studentfile.close()
-    subjectMenu()
 
-#NUEVA NOTA------------------------------------------------------
-def newnote(): # definir una nueva materia
-    dni=input(' Ingrese el DNI del alumno del que quiere agregar una nota: ')
-    studentfile=open('student.txt','r')
-    data_list = [] # Initialize an empty list to store the dictionaries
-    for line in studentfile: # Read each individual's information
-        values = line.strip().split("\t")  # tab-separated values
-        data_list.append(values)     # Append the individual's line to the list
-    studentfile.close()
-    for index in range(len(data_list)):
-        if data_list[index][0]==dni:
-            auxn=int(input('Seleccione que nota quiere agregar: 1. Nota 1 - Materia 1; 2. Nota 2 - Materia 1; 3. Nota 1 - Materia 2; 4. Nota 2 - Materia 2 '))
-        if auxn==1:
-            data_list[index][5]=input('Ingrese Nota 1 - Materia 1: ')
-        elif auxn==2:
-            data_list[index][6]=input('Ingrese Nota 2 - Materia 1: ')
-        elif auxn==2:
-            data_list[index][10]=input('Ingrese Nota 1 - Materia 2: ')
-        elif auxn==2:
-            data_list[index][11]=input('Ingrese Nota2 - Materia 2: ')
-        else:
-            print('El alumno no esta registrado')
-            
-            Promedio=(data_list[index][5] + data_list[index][6])/2
-            data_list[index][7]=input(Promedio)
-            Promedio2=(data_list[index][10] + data_list[index][11])/2
-            data_list[index][12]=input(Promedio2)
-            
-            # for index in range(len(data_list)):
-            #     if data_list[index][7]>= '6':
-            #         data_list[index][8]=input('Regular')
-            #     else data_list[index][7]< '6':
-            #         data_list[index][8]=input('No Regular')
-                    
-            #  for index in range(len(data_list)):
-            #     if data_list[index][12]>= '6':
-            #         data_list[index][13]=input('Regular')
-            #     else data_list[index][12]< '6':
-            #         data_list[index][13]=input('No Regular')
-                    
-    studentMenu() 
-    
-    studentfile=open('student.txt','w')
-    studentfile.write('DNI\tNombre\tApellido\tDomicilio\tMateria1\tMateria1-Nota1\tMateria1-nota2\tMateria1-Promedio\tMateria1-Situacion\tMateria2\tMateria2-Nota2\tMateria1-nota2\tMateria2-Promedio\tMateria2-Situacion'+'\n')
-    for index in range(1,len(data_list)):
-        studentfile.write(str(data_list[index][0])+'\t'+str(data_list[index][1])+'\t'+str(data_list[index][2])+'\t'+str(data_list[index][3])+'\t'+str(data_list[index][4])+'\t'+str(data_list[index][5])+'\t'+str(data_list[index][6])+'\t'+str(data_list[index][7])+'\t'+str(data_list[index][8])+'\t'+str(data_list[index][9])+'\t'+str(data_list[index][10])+'\t'+str(data_list[index][11])+'\t'+str(data_list[index][12])+'\t'+str(data_list[index][13])+'\n')
-    studentfile.close()
-    subjectMenu()
-    
+def welcomeMessageFunction():
+    os.system('cls') # Clears console   
+    lineSeparator(consoleLength) # Roof of the box
 
-#MODIFICAR NOTA------------------------------------------------------
-def modifynote(): # definir una nueva materia
-    dni=input(' Ingrese el DNI del alumno del que quiere agregar una nota: ')
-    studentfile=open('student.txt','r')
-    data_list = [] # Initialize an empty list to store the dictionaries
-    for line in studentfile: # Read each individual's information
-        values = line.strip().split("\t")  # tab-separated values
-        data_list.append(values)     # Append the individual's line to the list
-    studentfile.close()
-    for index in range(len(data_list)):
-        if data_list[index][0]==dni:
-            auxm=int(input('Seleccione que nota quiere modificar: 1. Nota 1 - Materia 1; 2. Nota 2 - Materia 1; 3. Nota 1 - Materia 2; 4. Nota 2 - Materia 2 '))
-        if auxm==1:
-            data_list[index][5]=input('Ingrese Nota 1 - Materia 1: ')
-        elif auxm==2:
-            data_list[index][6]=input('Ingrese Nota 2 - Materia 2: ')
-        elif auxm==2:
-            data_list[index][10]=input('Ingrese Nota 1 - Materia 2: ')
-        elif auxm==2:
-            data_list[index][11]=input('Ingrese Nota2 - Materia 2: ')
-        else:
-            print('El alumno no esta registrado')
-        studentMenu() 
+    customPrintCentered('Bienvenido al Trabajo practico de Tecnicas de Programacion')
+    customPrint('')
+    customPrint('Programadores: ')
+    customPrint('- Maria Navares')
+    customPrint('- Martin Borzi')
+    customPrint('- Tiago Altstadt')
+
+    lineSeparator(consoleLength) # Floor of the box
+    input(' Apreta cualquier tecla para continuar...')
+    mainMenu()
 
 def newstudent(): #Esta funcion agrega una nueva linea con los datos del alumno, falta agreagar que verifique si el DNI ya existe para no duplicarlo
     dni=input(' ingrese DNI del alumno: ')
@@ -223,15 +117,15 @@ def modifystudent(): #Función para modificar uno o varios datos del alumno
     studentfile.close()
     for index in range(len(data_list)):
         if data_list[index][0]==dni:
-            aux=int(input('Seleccione que dato quiere modificar: 1. Nombre; 2. Apellido; 3. Domicilio '))
-            if aux==1:
+            aux=str(input('Seleccione que dato quiere modificar: 1. Nombre; 2. Apellido; 3. Domicilio '))
+            if aux=='1':
                 data_list[index][1]=input('Ingrese el nuevo nombre: ')
-            elif aux==2:
+            elif aux=='2':
                 data_list[index][2]=input('Ingrese el nuevo apellido: ')
-            elif aux==3:
+            elif aux=='3':
                 data_list[index][3]=input('Ingrese el nuevo domicilio: ')
             else:
-                print('La opcion ingresada no es valida')
+                input('La opcion ingresada no es valida')
     studentfile=open('student.txt','w')
     studentfile.write('DNI\tNombre\tApellido\tDomicilio\tMateria1\tMateria1-Nota1\tMateria1-nota2\tMateria1-Promedio\tMateria1-Situacion\tMateria2\tMateria2-Nota2\tMateria1-nota2\tMateria2-Promedio\tMateria2-Situacion'+'\n')
     for index in range(1,len(data_list)):
@@ -269,4 +163,4 @@ def customPrintCentered(string): # Misma funcion que customPrint() pero separa l
     
     print('|'+ spaces + string  + spaces +' |')
 
-main() # Funcion principal donde se ejecuta todo
+main() # Funcion principal donde se ejecuta todo
