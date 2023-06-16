@@ -1,3 +1,8 @@
 DNI	Nombre	Apellido	Domicilio	Materia1	Materia1-Nota1	Materia1-nota2	Materia1-Promedio	Materia1-Situacion	Materia2	Materia2-Nota2	Materia1-nota2	Materia2-Promedio	Materia2-Situacion
+<<<<<<< HEAD
 123	123	123	123	hola	 0	 0	 0	 0	 0	 0	 0	 0	 0
 321	321	321	321	 0	 0	 0	 0	 0	chau	 0	 0	 0	 0
+=======
+123	123	123	123	A	 0	 0	 0	 0	 0	 0	 0	 0	 0
+321	321	321	321	 0	 0	 0	 0	 0	B	 0	 0	 0	 0
+>>>>>>> bea60b98ca036bf1956e4c6f9d5e5c09539a3fcd
