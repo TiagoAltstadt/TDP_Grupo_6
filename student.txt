@@ -1,0 +1,3 @@
+DNI	Nombre	Apellido	Domicilio	Materia1	Materia1-Nota1	Materia1-nota2	Materia1-Promedio	Materia1-Situacion	Materia2	Materia2-Nota2	Materia1-nota2	Materia2-Promedio	Materia2-Situacion
+123	123	123	123	hola	 0	 0	 0	 0	 0	 0	 0	 0	 0
+321	321	321	321	 0	 0	 0	 0	 0	chau	 0	 0	 0	 0
