@@ -102,7 +102,9 @@ def modifyStudent(): #Función para modificar uno o varios datos del alumno
             aux=str(input('''Seleccione que dato quiere modificar:
                            1. Nombre
                            2. Apellido
-                           3. Domicilio ''''))
+                           3. Domicilio
+                           
+                           Seleccion: '''))
             if aux=='1':
                 data_list[index][1]=input('Ingrese el nuevo nombre: ')
             elif aux=='2':
@@ -159,7 +161,7 @@ def subjectMenu():
         subjectMenu()
 
 #NUEVA MATERIA------------------------------------------------------
-def newsubject(): # definir una nueva materia
+def newSubject(): # definir una nueva materia
     dni=input('Ingrese el DNI del alumno del que quiere agregar una materia: ')
     studentfile=open('student.txt','r')
     data_list = [] # Initialize an empty list to store the dictionaries1
@@ -168,8 +170,6 @@ def newsubject(): # definir una nueva materia
         data_list.append(values)     # Append the individual's line to the list
     studentfile.close()
     for index in range(len(data_list)):
-        print(dni)
-        print(data_list[index][0])
         if data_list[index][0]==dni:
             aux=str(input('''Seleccione que materia quiere agregar:
                           1. Materia 1
@@ -188,7 +188,7 @@ def newsubject(): # definir una nueva materia
     subjectMenu()
 
 #NUEVA NOTA------------------------------------------------------
-def newnote(): # definir una nueva materia
+def newNote(): # definir una nueva materia
     dni=input('Ingrese el DNI del alumno del que quiere agregar una nota: ')
     studentfile=open('student.txt','r')
     data_list = [] # Initialize an empty list to store the dictionaries
