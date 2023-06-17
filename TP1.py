@@ -1,15 +1,39 @@
 import os # Esta libreria me permite hacer el clear screen
+from os.path import exists
+import time
 
 # Global Variables
 consoleLength = 80
 breakLine = '\n'
 
-def main():
-    studentfile=open('student.txt','w')
-    studentfile.write('DNI\tNombre\tApellido\tDomicilio\tMateria1\tMateria1-Nota1\tMateria1-nota2\tMateria1-Promedio\tMateria1-Situacion\tMateria2\tMateria2-Nota2\tMateria1-nota2\tMateria2-Promedio\tMateria2-Situacion'+'\n')
-    studentfile.close()
-    welcomeMessageFunction()
+def loadingMessage(message, repetitions):
+    for rep in repetitions:
+        print(message + '.')
+        time.sleep(0.3)
+        os.system('cls') # Clears console   
+        print(message + '..')
+        time.sleep(0.3)
+        os.system('cls') # Clears console   
+        print(message + '...')
+        time.sleep(0.3)
+        os.system('cls') # Clears console   
 
+
+def fileChecker():
+    if exists('student.txt'):
+        print('Archivo encontrado')
+    else:
+        loadingMessage('Carganding', 3)
+        studentfile=open('student.txt','w')
+        studentfile.write('DNI\tNombre\tApellido\tDomicilio\tMateria1\tMateria1-Nota1\tMateria1-nota2\tMateria1-Promedio\tMateria1-Situacion\tMateria2\tMateria2-Nota2\tMateria1-nota2\tMateria2-Promedio\tMateria2-Situacion'+'\n')
+        studentfile.close()
+        welcomeMessageFunction()
+
+
+def main():
+    fileChecker()
+
+#-------------------Menus-------------------
 def mainMenu():
     os.system('cls') # Clears console   
     lineSeparator(consoleLength) # Roof of the box
@@ -87,20 +111,7 @@ def subjectMenu():
     else: # por default reinicia la funcion
         subjectMenu()
 
-def welcomeMessageFunction():
-    os.system('cls') # Clears console   
-    lineSeparator(consoleLength) # Roof of the box
 
-    customPrintCentered('Bienvenido al Trabajo practico de Tecnicas de Programacion')
-    customPrint('')
-    customPrint('Programadores: ')
-    customPrint('- Maria Navares')
-    customPrint('- Martin Borzi')
-    customPrint('- Tiago Altstadt')
-
-    lineSeparator(consoleLength) # Floor of the box
-    input(' Apreta cualquier tecla para continuar...')
-    mainMenu()
 
 #-------------------Materias-------------------
 def newSubject(): # definir una nueva materia
@@ -266,5 +277,19 @@ def customPrintCentered(string): # Misma funcion que customPrint() pero separa l
         spaces = spaces + ' '
     
     print('|'+ spaces + string  + spaces +' |')
+def welcomeMessageFunction():
+    os.system('cls') # Clears console   
+    lineSeparator(consoleLength) # Roof of the box
+
+    customPrintCentered('Bienvenido al Trabajo practico de Tecnicas de Programacion')
+    customPrint('')
+    customPrint('Programadores: ')
+    customPrint('- Maria Navares')
+    customPrint('- Martin Borzi')
+    customPrint('- Tiago Altstadt')
+
+    lineSeparator(consoleLength) # Floor of the box
+    input(' Apreta cualquier tecla para continuar...')
+    mainMenu()
 
 main() # Funcion principal donde se ejecuta todo
