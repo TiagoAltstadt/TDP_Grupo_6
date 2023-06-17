@@ -7,7 +7,7 @@ consoleLength = 80
 breakLine = '\n'
 
 def loadingMessage(message, repetitions):
-    for rep in repetitions:
+    for rep in range(3):
         print(message + '.')
         time.sleep(0.3)
         os.system('cls') # Clears console   
@@ -20,11 +20,13 @@ def loadingMessage(message, repetitions):
 
 
 def fileChecker():
+    loadingMessage('Buscando ', 2)
     if exists('student.txt'):
-        print('Archivo encontrado')
+        loadingMessage('BBDD encontrada, abriendo', 2)
+        welcomeMessageFunction()
     else:
-        loadingMessage('Carganding', 3)
-        studentfile=open('student.txt','w')
+        loadingMessage('No se encontro BBDD, creando', 2)
+        studentfile=open('./student.txt','w')
         studentfile.write('DNI\tNombre\tApellido\tDomicilio\tMateria1\tMateria1-Nota1\tMateria1-nota2\tMateria1-Promedio\tMateria1-Situacion\tMateria2\tMateria2-Nota2\tMateria1-nota2\tMateria2-Promedio\tMateria2-Situacion'+'\n')
         studentfile.close()
         welcomeMessageFunction()
